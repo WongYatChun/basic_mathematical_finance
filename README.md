@@ -6,7 +6,7 @@ This book is designed to introduce some basic concepts in Mathematical Finance. 
 
 The purpose of this book is not to review the rigorous mathematics behind the Black-Scholes formula but to give readers who have a reasonable background in Mathematics and Finance a basic and intuitive understanding in the very foundation of the nowadays Mathematical Finance. For this reason, the style of this book may be less technical but more on intuition. We will also try to make the text not only simple but also as concise as possible such that one can use the least effort to get the crux of the topic. Lastly, we also prepare some exercises with solutions from classic Mathematical Finance textbooks at the end of each chapters which may help you consolidate the understanding of the important concepts.
 
-This book is based on the lecture notes of FINA3350 Mathematical Finance conducted by Dr. Rujing Meng, *The University of Hong Kong*. Any errors are mine. 
+This book is based on the lecture notes of FINA3350 Mathematical Finance prepared by Dr. Rujing Meng, *The University of Hong Kong*. Any errors are mine. 
 
 ## Content
 * [Chapter 0: Overview](Chapter_0_overview.md)
