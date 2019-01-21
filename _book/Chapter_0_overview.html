@@ -305,18 +305,60 @@
                                 
                                 <h1 id="chapter-0-overview">Chapter 0: Overview</h1>
 <h2 id="outline">Outline:</h2>
-<p>This chapter will briefly walk through the timeline of the Black-Scholes Formula. We will see the different approaches were developed to derive the milestone formula in Mathematical Finance. Moreover, we will also introduce the structure of this book and how chapters are related. </p>
+<p>This chapter will briefly walk through different approaches to derive the Black-Scholes formula. Moreover, we will also introduce the structure of this book and how chapters are related. Hopefully this chapter will give the big picture and intrigue you to explore the milestone stone of the Mathematical Finance.</p>
 <hr>
 <h2 id="what-is-the-black-scholes-formula">What is the Black-Scholes Formula?</h2>
 <p>Blach-Scholes Formula is an analytical option pricing formula which gives a theoretical estimate of the price of European-options. </p>
 <p>The most important insight of the Black-Scholes Formula is that an European option can be priced regardless of its expected return from the investors which gives a single price that market participants are likely to agree. </p>
 <p><strong>Analytical pricing vs. Numerical pricing</strong></p>
 <p>Option pricing includes 2 main approaches: analytical pricing and numerical pricing. Analytical pricing uses mathematics (often in great quantity) to derive an exact option pricing formula based on the model of asset prices, e.g. Black-Scholes Formula. On the other hand, numerical pricing uses computers and many repetitions of a simple procedure to arrive at an estimated option price, e.g. Monte Carlo Simulation. Note that Exact analytical solutions are rare, most of the analytical pricing formula have no closed-form solutions. Therefore, although numerical pricing may not be as elegant as analytical pricing, it is still widely used to price complex derivatives other than European options.</p>
-<h2 id="timeline-of-the-black-scholes-formula">Timeline of the Black-Scholes Formula</h2>
+<h2 id="the-big-picture-how-to-derive-the-black-scholes-formula">The Big Picture: How to derive the Black-Scholes Formula?</h2>
 <p>There are many ways to derive or interpret Black-Scholes Formula. The most common ways are <strong><em>1) Black-Scholes Equation</em></strong>, <strong><em>2) Cox and Ross Discounted Expectation</em></strong>, <strong><em>3) Cox, Ross and Rubinstein Binomial Option Pricing</em></strong>. We now present summaries of these three methods. </p>
 <h3 id="1-black-scholes-equation-1973">1. Black-Scholes Equation (1973)</h3>
+<p><script type="math/tex; mode=display">
+\frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2S^2\frac{\partial^2 V}{\partial t^2} + rS\frac{\partial V}{\partial S} - rV = 0
+</script></p>
 <h3 id="2-cox-and-ross-discounted-expectation-1976">2. Cox and Ross Discounted Expectation (1976)</h3>
+<p><script type="math/tex; mode=display">
+\tilde V(t) = \frac{V(t)}{B(t)} = V(t)e^{-rt}
+</script>
+<script type="math/tex; mode=display">
+\tilde V(t) = \mathop{\mathbb{E}}[\tilde V(T) | \tilde V(t)]
+</script>
+<script type="math/tex; mode=display">
+V(t)e^{-rt} = \mathop{\mathbb{E}}[V(T)e^{-rT}| V(t)]
+</script>
+<script type="math/tex; mode=display">
+V(t) = e^{-r(T-t)}\mathop{\mathbb{E}}[V(T)| V(t)]
+</script></p>
 <h3 id="3-cox-ross-and-rubinstein-binomial-option-pricing-1979">3. Cox, Ross and Rubinstein Binomial Option Pricing (1979)</h3>
+<p><img src="img/Binomial_Options.png" alt="Binomial"></p>
+<h2 id="the-structure-of-this-book">The Structure of this book</h2>
+<p>To build up the intuition of the Black-Scholes Formula, instead of following the timeline, we will learn the above 3 derivations in the reverse chronological order. </p>
+<p>We first introduce the <em>Binomial Option Pricing Approach</em>. </p>
+<ul>
+<li><a href="Chapter_1_binomial_branch.html">Chapter 1: The Tree Approach I -- Binomial Branch</a> starts by modeling the asset as well as the derivative price using a 1-step binomial model, i.e. Binomial Branch. It gives us the simple intuition of replication arguments and the risk-neutral probabilities.</li>
+<li><a href="Chapter_2_binomial_tree.html">Chapter 2: The Tree Approach II -- Binomial Tree</a> further extend the one-step binomial model to a <em>J-step Binomial Model</em>, i.e. <em>Binomial Tree</em>. This model will give us approximations to Black-Scholes pricing.</li>
+</ul>
+<p>Next we explore the <em>Discounted Expectation Approach</em></p>
+<ul>
+<li><a href="Chapter_3_probability.html">Chapter 3: Review of Probability</a></li>
+<li><a href="Chapter_5_martingale.html">Chapter 4: Martingale Approach</a></li>
+<li><a href="Chapter_6_dividends.html">Chapter 5: Pricing Foreign Exchange and Equities with Dividends</a></li>
+<li><a href="Chapter_7_BS_martingale.html">Chapter 6: Derive the Black-Scholes Formula by the Martingale Approach</a></li>
+</ul>
+<p>Then we derive the Black-Scholes Formula by <em>solving the Black-Scholes Equation</em>.</p>
+<ul>
+<li><a href="Chapter_4_SDE_Ito.html">Chapter 7: Stochastic Differential Equations and Ito&apos;s lemma</a></li>
+<li><a href="Chapter_8_BSPDE.html">Chapter 8: Derive the Black-Scholes Partial Differential Equation</a></li>
+<li><a href="Chapter_9_BS_BSPDE.html">Chapter 9: Derive the Black-Scholes Formula from the Black-Scholes Partial Differential Equation</a></li>
+</ul>
+<p>Last but not least, we discuss the basic implications of the Black-Scholes Formula by performing simple asympototic analysis. We will also briefly cover the topics such as <em>Implied Volatility</em> (Chapter 10) and <em>Greeks</em> (Chapter 11). This section is very important because it helps us understand the behaviour of the Black-Scholes Formula which is the basis of hedging and risk management.</p>
+<ul>
+<li><a href="Chapter_10_asymptotic_IV.html">Chapter 10: Asymptotic Analysis of the Black-Scholes Formula and Implied Volatility</a></li>
+<li><a href="Chapter_11_greeks.html">Chapter 11: Deriving Greeks</a></li>
+</ul>
+<p>Without further ado, let&apos;s get started.</p>
 
                                 
                                 </section>
@@ -360,7 +402,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Chapter 0: Overview","level":"1.2","depth":1,"next":{"title":"Chapter 1: The Tree Approach I -- Binomial Branch","level":"1.3","depth":1,"path":"Chapter_1_binomial_branch.md","ref":"Chapter_1_binomial_branch.md","articles":[]},"previous":{"title":"Preface","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["mathjax","livereload"],"pluginsConfig":{"mathjax":{"forceSVG":false,"version":"2.6-latest"},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter_0_overview.md","mtime":"2019-01-20T19:10:37.410Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-20T17:13:48.626Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Chapter 0: Overview","level":"1.2","depth":1,"next":{"title":"Chapter 1: The Tree Approach I -- Binomial Branch","level":"1.3","depth":1,"path":"Chapter_1_binomial_branch.md","ref":"Chapter_1_binomial_branch.md","articles":[]},"previous":{"title":"Preface","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["mathjax","livereload"],"pluginsConfig":{"mathjax":{"forceSVG":false,"version":"2.6-latest"},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter_0_overview.md","mtime":"2019-01-21T12:34:49.907Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-21T09:32:03.767Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
