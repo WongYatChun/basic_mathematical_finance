@@ -303,7 +303,129 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h1 id="chapter-1-binomial-branch">Chapter 1: Binomial Branch</h1>
+<h2 id="outline">Outline</h2>
+<p>This chapter will:</p>
+<ol>
+<li>Introduce the Binomial Branch</li>
+<li>Introduce the Risk-Neutral Probability</li>
+<li>Introduce the basic of Martingale</li>
+<li>Introduce a 5-step risk-neutral derivative rule in the binomial branch framework</li>
+</ol>
+<h2 id="1-introduce-the-binomial-branch">1. Introduce the Binomial Branch</h2>
+<p><script type="math/tex; ">B(t)</script>: the price of a riskless money market instrument, e.g. a Cash Bond</p>
+<ul>
+<li><script type="math/tex; ">B(t) = e^{rt}</script><ul>
+<li><script type="math/tex; ">r</script>: continuously compounded risk-free rate</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-introduce-the-risk-neutral-probability">2. Introduce the Risk-Neutral Probability</h2>
+<h3 id="21-glossary">2.1. Glossary</h3>
+<p><em>(Note: The definitions below are not rigorous, but it serves for this book to give an intuition)</em></p>
+<p><strong>Arbitrage</strong>: The simultaneous buying and selling of a security at two different prices in two different markets, resulting in profits wihtout risk. </p>
+<ul>
+<li>Perfectly efficient markets present no arbitrage opportunities.</li>
+<li>In reality, arbitrage opportunities seldom exist and are often precluded because of transaction costs</li>
+</ul>
+<p><strong>The Law of One Price</strong>: If two securities have the same payoffs in the future, then they must have the same price today.</p>
+<ul>
+<li>Otherwise, there is an arbitrage opportunity</li>
+</ul>
+<h3 id="22-replicating-portfolio-and-risk-neutral-probability">2.2. Replicating Portfolio and Risk-neutral Probability</h3>
+<p>We will find the <strong>risk-neutral probability</strong> by applying the law of one price</p>
+<p>We use the stock and the cash bond to build a porfolio which mimics the payoffs of the derivative. This portfolio is called &quot;<strong>replicating portfolio</strong>&quot;. Since the replicating portfolio and the derivative have the same payoff structure, by <em>The Law of One Price</em>, <strong><u>their prices must be the same</u></strong>.</p>
+<p>Suppose:</p>
+<ul>
+<li><p><script type="math/tex; ">f_0</script>: price of the derivative</p>
+</li>
+<li><p><script type="math/tex; ">\Delta</script>: number of shares of the stocks/underlying</p>
+</li>
+<li><p><script type="math/tex; ">B</script>: number of shares of the riskless bond</p>
+</li>
+</ul>
+<p>Since the price of the derivative equals the price of the replicating portfolio, we have:</p>
+<p><script type="math/tex; ">\text{At time = }0</script>:
+<script type="math/tex; mode=display">
+f_0 = \Delta s_0 + B
+</script>
+<script type="math/tex; ">\text{And at time = }\Delta t</script>:
+<script type="math/tex; mode=display">
+\begin{cases}
+   f_u = \Delta s_u + B e^{r\Delta t} \\
+   f_d = \Delta s_d + B e^{r\Delta t}
+\end{cases}
+</script>
+Solve system of equations, we get:</p>
+<p><script type="math/tex; mode=display">
+\begin{cases}
+   \Delta = \frac{f_u - f_d}{s_u - s_d} \\
+   B =  \frac{e^{-r\Delta t}(f_d s_u - f_u s_d)}{s_u = s_d}
+\end{cases}
+</script></p>
+<p>Substitute <script type="math/tex; ">\Delta</script> and <script type="math/tex; ">B</script> into <script type="math/tex; ">f_0 = \Delta s_0 + B</script>
+<script type="math/tex; mode=display">
+f_0 = \Delta s_0 + B = e^{-r\Delta t}\left(\frac{e^{r\Delta t}s_0 - s_d}{s_u - s_d}f_u + \left(1 - \frac{e^{r\Delta t}s_0 - s_d}{s_u - s_d}\right)f_d\right)
+
+</script></p>
+<h2 id="3-the-basic-of-martingale">3. The basic of Martingale</h2>
+<h3 id="31-glossary">3.1. Glossary</h3>
+<p><em>(Note: The definitions below are not rigorous, but it serves for this book to give an intuition)</em></p>
+<p><strong>Measure</strong>: The formal definition is too obscure for the purpose of this book. In probability theory, a &quot;measure&quot; is a mathematical function that allocates probability weight to outcomes in the sample space. Two probability measures that reassign probabilities to outcomes without changing the range of possible outcomes as called <strong>&quot;equivalent measures&quot;</strong>.</p>
+<p><strong>Martingale</strong>: A process <script type="math/tex; ">X_t</script> with respect to a measuure <script type="math/tex; ">P</script> if it satisfies the following two conditions:</p>
+<ul>
+<li><script type="math/tex; ">\mathop{\mathbb{E}}^P[X_T | X_t, ..., X_0] = \mathop{\mathbb{E}}^P[X_T | X_t ] = X_t</script></li>
+<li><script type="math/tex; ">\mathop{\mathbb{E}}^P[| X_T |] < \infty</script> for all <script type="math/tex; ">T</script></li>
+</ul>
+<p><strong>Martingale Measure</strong>: The measure that makes a process a martingale</p>
+<p><strong>Real-world measure <script type="math/tex; ">P</script></strong>: The measure that models the probability distribution of the market prices at a given future investment horizon.</p>
+<p><strong>Risk-neutral measure <script type="math/tex; ">Q</script></strong>: The risk-neutral measure makes the risk-free discounted stock price (as well as the risk-free discounted derivative) a martingale, also called &quot;<strong>equivalent martingale measure&quot;</strong>.</p>
+<ul>
+<li>Uniqueness of the measure <script type="math/tex; ">Q</script>: In a discrete-time world, for any stock process, there will be a unique measure <script type="math/tex; ">Q</script> under which the discounted stock is a <script type="math/tex; ">Q</script>-martingale</li>
+</ul>
+<h3 id="32-how-to-find-the-measure-q">3.2. How to find the measure <script type="math/tex; ">Q</script>?</h3>
+<p>Premise: Measure <script type="math/tex; ">Q</script> is the measure that makes the risk-free discounted stock price a martingale</p>
+<p><strong><u>In the binomial tree model</u></strong>:</p>
+<p>Given a tree structure, if we can find a measure <script type="math/tex; ">Q</script> that makes the risk-free discounted stock price process a martingale, then the risk-free discounted derivative will also be a <script type="math/tex; ">Q</script>-martingale. The price of the derivative today is therefore the expected discounted future payoffs at the risk-free rate under <script type="math/tex; ">Q</script>-measure</p>
+<h2 id="4-five-step-risk-neutral-derivative-rule-in-the-binomial-branch-framework">4. Five-step risk-neutral derivative rule in the binomial branch framework</h2>
+<p><strong>Step 1</strong>: Discount the stock price <script type="math/tex; ">S_{\Delta t}</script> by using the risk-free rate to have discounted stock price</p>
+<ul>
+<li><script type="math/tex; ">e^{r\Delta t}S_{\Delta t}</script></li>
+</ul>
+<p><strong>Step 2</strong>: Find a measure <script type="math/tex; ">Q</script> that makes the discounted stock price a martingale:</p>
+<ul>
+<li><p><script type="math/tex; ">  \mathop{\mathbb{E}}^Q[e^{r\Delta t}S_{\Delta t}| e^{r * 0 }S_0] = e^{r * 0 }S_0 = S_0 </script></p>
+</li>
+<li><p><u>Specifically, in the binomial tree model</u>:</p>
+<ul>
+<li><script type="math/tex; "> s_0 = qe^{-r\Delta t}s_u + (1 - q)e^{-r\Delta t}s_d \implies q = \frac{e^{-r\Delta t}s_0 - s_d}{s_u - s_d}</script></li>
+</ul>
+</li>
+</ul>
+<p><strong>Step 3</strong>: Discount the derivative price <script type="math/tex; ">F_{\Delta t}</script> by using the risk-free rate to have discounted derivative price</p>
+<ul>
+<li><script type="math/tex; ">e^{r\Delta t}F_{\Delta t}</script></li>
+</ul>
+<p><strong>Step 4</strong>: Calculate the expectation of the discounted derivative price under measure <script type="math/tex; ">Q</script>:</p>
+<ul>
+<li><p><script type="math/tex; ">  \mathop{\mathbb{E}}^Q[e^{r\Delta t}F_{\Delta t}| e^{r * 0 }F_0] = e^{r * 0 }F_0 = F_0 </script></p>
+</li>
+<li><p><u>Specifically, in the binomial tree model</u>:</p>
+<ul>
+<li>Plug in the <script type="math/tex; ">q</script> calculated in Step 2</li>
+<li><script type="math/tex; "> f_0 = qe^{-r\Delta t}f_u + (1 - q)e^{-r\Delta t}f_d</script></li>
+</ul>
+</li>
+</ul>
+<p><strong>Step 5</strong>: Calculate the hedge ratio</p>
+<ul>
+<li>To mimic payoffs of the derivative, we construct a replicating portfolio by:<ol>
+<li>Long <script type="math/tex; ">x = \frac{f_u - f_d}{s_u - s_d}</script> stock, and</li>
+<li>Make up the balance of the price of the derivative by riskless borrowing or lending</li>
+</ol>
+</li>
+</ul>
+
                                 
                                 </section>
                             
@@ -346,7 +468,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Chapter 1: The Tree Approach I -- Binomial Branch","level":"1.3","depth":1,"next":{"title":"Chapter 2: The Tree Approach II -- Binomial Tree","level":"1.4","depth":1,"path":"Chapter_2_binomial_tree.md","ref":"Chapter_2_binomial_tree.md","articles":[]},"previous":{"title":"Chapter 0: Overview","level":"1.2","depth":1,"path":"Chapter_0_overview.md","ref":"Chapter_0_overview.md","articles":[]},"dir":"neutral"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["mathjax","livereload"],"pluginsConfig":{"mathjax":{"forceSVG":false,"version":"2.6-latest"},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter_1_binomial_branch.md","mtime":"2019-01-20T07:28:47.101Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-21T09:32:03.767Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Chapter 1: The Tree Approach I -- Binomial Branch","level":"1.3","depth":1,"next":{"title":"Chapter 2: The Tree Approach II -- Binomial Tree","level":"1.4","depth":1,"path":"Chapter_2_binomial_tree.md","ref":"Chapter_2_binomial_tree.md","articles":[]},"previous":{"title":"Chapter 0: Overview","level":"1.2","depth":1,"path":"Chapter_0_overview.md","ref":"Chapter_0_overview.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["mathjax","livereload"],"pluginsConfig":{"mathjax":{"forceSVG":false,"version":"2.6-latest"},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter_1_binomial_branch.md","mtime":"2019-01-25T17:34:07.312Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-25T15:57:15.587Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
