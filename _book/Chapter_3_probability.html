@@ -303,7 +303,153 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h1 id="chapter-3-review-of-probability-and-statistics">Chapter 3: Review of Probability and Statistics</h1>
+<h2 id="outline">Outline</h2>
+<p>This chapter will:</p>
+<ol>
+<li>Review the concept of Expectation, Variance, Covariance, and Correlation</li>
+<li>Introduce normal distribution and central limit theorem</li>
+<li>Introduce log-normal distribution</li>
+<li>Derive the probability of a European call is in the money in the risk-neutral world</li>
+</ol>
+<h2 id="1-expectation-variance-covariance-and-correlation">1. Expectation, Variance, Covariance, and Correlation</h2>
+<h3 id="11-expectation">1.1. Expectation</h3>
+<p>If <script type="math/tex; ">X</script> is a random variable whose value is in the range of <script type="math/tex; ">[a, b]</script> and its probability density function (PDF) is <script type="math/tex; ">f(x)</script>, then the <em>expected value</em> of <script type="math/tex; ">X</script>, denoted by <script type="math/tex; ">\mathbb{E}(X)</script>, is defined by:</p>
+<p><script type="math/tex; mode=display">
+\mathbb{E}(X) = \int^b_a f(x) dx
+</script></p>
+<p>The expectation of any function of X (denoted by <script type="math/tex; ">p(x)</script>) is defined by:</p>
+<p><script type="math/tex; mode=display">
+\mathbb{E}(X) = \int^b_a p(x)f(x) dx
+</script></p>
+<h4 id="properties-of-expectation">Properties of Expectation</h4>
+<p>For random variables <script type="math/tex; ">X</script> and <script type="math/tex; ">Y</script>, and constants <script type="math/tex; ">a</script> and <script type="math/tex; ">b</script></p>
+<ol>
+<li><script type="math/tex; ">\mathbb{E}(a) = a</script></li>
+<li><script type="math/tex; ">\mathbb{E}(aX) = a\mathbb{E}(X)</script></li>
+<li><script type="math/tex; ">\mathbb{E}(aX + b) = \mathbb{E}(X) + b</script></li>
+<li><script type="math/tex; ">\mathbb{E}(X + Y) = \mathbb{E}(X) + \mathbb{E}(Y) </script></li>
+<li>If <script type="math/tex; ">X</script> and <script type="math/tex; ">Y</script> are independent, then <script type="math/tex; ">\mathbb{E}(XY) = \mathbb{E}(X)\mathbb{E}(Y) </script></li>
+<li>If <script type="math/tex; ">\mathbb{E}(XY) = \mathbb{E}(X)\mathbb{E}(Y) </script>, then <script type="math/tex; ">X</script> and <script type="math/tex; ">Y</script> are uncorrelated (but not necessarily independent)</li>
+<li>If <script type="math/tex; ">X</script> and <script type="math/tex; ">Y</script> are not independent, then <script type="math/tex; ">\mathbb{E}(XY) = \mathbb{E}(X)\mathbb{E}(Y) + Cov(X,Y)</script><ul>
+<li><script type="math/tex; ">Cov(X,Y)</script> denotes the covariace between X and Y</li>
+</ul>
+</li>
+</ol>
+<h4 id="conditional-expectation-of-a-time-variant-random-variable">Conditional Expectation of a time-variant random variable</h4>
+<p><strong>Conditional expectation</strong> of a time-variant random variable <script type="math/tex; ">X(t)</script>, given the information <script type="math/tex; ">X(s)</script>, <script type="math/tex; "> s < t</script>, is usually denoted by:</p>
+<p><script type="math/tex; mode=display">
+\mathbb{E}(X(t) | X(s))
+</script></p>
+<p>It means we take the expectation of a random variable <script type="math/tex; ">X</script> at a future time <script type="math/tex; ">t</script>, given the information of <script type="math/tex; ">X</script> at time <script type="math/tex; ">s</script>.</p>
+<p>On the other hand, the conditional expectation of <script type="math/tex; ">X(s)</script> given the information of <script type="math/tex; ">X(s)</script> is:</p>
+<p><script type="math/tex; mode=display">
+\mathbb{E}(X(s) | X(s)) = X(s)
+</script></p>
+<h3 id="12-variance">1.2. Variance</h3>
+<p>The variance of <script type="math/tex; ">X</script>, denoted by <script type="math/tex; ">Var(X)</script> is defined by:</p>
+<p><script type="math/tex; mode=display">
+Var(X) = \mathbb{E}((X - \mathbb{E}(X))^2) = \mathbb{E}(X^2) - (\mathbb{E}(X))^2
+</script></p>
+<h4 id="properties-of-variance">Properties of Variance</h4>
+<p>For random variables <script type="math/tex; ">X</script> and <script type="math/tex; ">Y</script>, and constants <script type="math/tex; ">a</script> and <script type="math/tex; ">b</script></p>
+<ol>
+<li><script type="math/tex; ">Var(a) = 0</script></li>
+<li><script type="math/tex; ">Var(aX) = a^2 Var(X)</script></li>
+<li><script type="math/tex; ">Var(aX + b) = a^2 Var(X)</script></li>
+<li><script type="math/tex; ">Var(X + Y) = Var(X) + Var(Y) + 2Cov(X,Y)</script><ul>
+<li><script type="math/tex; ">Cov(X,Y)</script> denotes the covariace between X and Y</li>
+</ul>
+</li>
+</ol>
+<p><strong>Standard Deviation</strong> of a random variable <script type="math/tex; ">X</script>, denoted by <script type="math/tex; ">STD(X)</script>, is defined by</p>
+<p><script type="math/tex; mode=display">
+STD(X) = \sqrt{Var(X)}
+</script></p>
+<h3 id="13-covariance-and-correlation">1.3. Covariance and Correlation</h3>
+<p>The covariance of any two random variables <script type="math/tex; ">X</script> and <script type="math/tex; ">Y</script>, denoted by <script type="math/tex; ">Cov(X,Y)</script>, is defined by:</p>
+<p><script type="math/tex; mode=display">
+Cov(X,Y) = \mathbb{E}((X - \mathbb{E}(X)))(Y - \mathbb{E}(Y)) = \mathbb{E}(XY) - \mathbb{E}(X)\mathbb{E}(Y)
+</script></p>
+<h4 id="properties-of-covariance">Properties of Covariance</h4>
+<p>For random variables <script type="math/tex; ">X</script>, <script type="math/tex; ">Y</script> <script type="math/tex; ">X_1</script> and <script type="math/tex; ">X_2</script>, and constants <script type="math/tex; ">a</script> and <script type="math/tex; ">b</script></p>
+<ol>
+<li><script type="math/tex; ">Cov(a,b) = 0</script></li>
+<li><script type="math/tex; ">Cov(a, X) = 0</script></li>
+<li><script type="math/tex; ">Cov(aX, Y) = aCov(X,Y)</script></li>
+<li><script type="math/tex; ">Cov(aX, bY) = abCov(X,Y)</script></li>
+<li><script type="math/tex; ">Cov(aX + b, Y) = aCov(X,Y)</script></li>
+<li><script type="math/tex; ">Cov(X,Y) = Cov(Y,X)</script></li>
+<li><script type="math/tex; ">Cov(X, X) = Var(X)</script></li>
+<li><script type="math/tex; ">Cov(X_1 + X_2, Y) = Cov(X_1, Y) + Cov(X_2, Y)</script></li>
+<li>If <script type="math/tex; ">X</script> and <script type="math/tex; ">Y</script> are independent, then <script type="math/tex; ">Cov(X,Y) = 0</script><ul>
+<li>But the reverse is not always true</li>
+<li>For two joinly normally distributed variables <script type="math/tex; ">X</script> and <script type="math/tex; ">Y</script>, if <script type="math/tex; ">Cov(X,Y) = 0</script>, <script type="math/tex; ">X</script> and <script type="math/tex; ">Y</script> are independent</li>
+</ul>
+</li>
+<li>If <script type="math/tex; ">Cov(X,Y) = 0</script> and <script type="math/tex; ">Cov(f(X),g(Y)) = 0</script> then <script type="math/tex; ">X</script> and <script type="math/tex; ">Y</script> are independent<ul>
+<li><script type="math/tex; ">f(X)</script> and <script type="math/tex; ">g(X)</script> are any nonlinear function of <script type="math/tex; ">X</script> and <script type="math/tex; ">Y</script> respectively</li>
+</ul>
+</li>
+</ol>
+<h4 id="correlation">Correlation</h4>
+<p>The correlation between random variables <script type="math/tex; ">X</script> and <script type="math/tex; ">Y</script>, denoted by \rho(X,Y), is defined by:</p>
+<p><script type="math/tex; mode=display">
+\rho = \frac{Cov(X,Y)}{\sqrt{Var(X)}\sqrt{Var(Y)}}
+</script></p>
+<p>It can be shown that <script type="math/tex; "> -1 \le \rho(X,Y) \le 1</script>.</p>
+<p>If <script type="math/tex; ">X</script> and <script type="math/tex; ">Y</script> are linearly related by the equation <script type="math/tex; ">Y = a + bX</script>, then</p>
+<p><script type="math/tex; mode=display">
+
+\rho(X, Y) = 
+\begin{cases}
+1 &  b > 0 \\
+-1 & b < 0
+\end{cases}
+
+</script></p>
+<h3 id="14-sample-mean-and-sample-variance">1.4. Sample Mean and Sample Variance</h3>
+<p>Let <script type="math/tex; ">x_1, x_2, \dots , x_n</script> be a sample of a random variable <script type="math/tex; ">X</script> with a population mean <script type="math/tex; ">\mu</script> and a population variance <script type="math/tex; ">\sigma^2</script></p>
+<p><strong>Sample Mean</strong> <script type="math/tex; ">\bar{x}</script>: an estimation of the population mean <script type="math/tex; ">\mu</script></p>
+<p><script type="math/tex; mode=display">
+\bar{x} = \frac{1}{n} \sum^{n}_{i=1}x_i
+</script></p>
+<p><strong>Sample Variance</strong> <script type="math/tex; ">s^2</script>: an estimation of the population variance <script type="math/tex; ">\sigma^2</script></p>
+<p><script type="math/tex; mode=display">
+s^2 = \frac{1}{n-1} \sum^{n}_{i=1}{(x_i-\bar{x})^2}
+</script></p>
+<h2 id="2-normal-distribution-and-central-limit-theorem">2. Normal Distribution and Central Limit Theorem</h2>
+<h3 id="21-discrete-process-vs-continuous-process">2.1 Discrete Process vs. Continuous Process</h3>
+<p><strong>Discrete Process</strong>: A process whose value changes on distinct, separated time points. For example, the binomial tree model describes the price of securities as a discrete process. The price changes at discrete time points with a fixed step size <script type="math/tex; ">\Delta t</script>.</p>
+<p><strong>Continuous Process</strong>: A process whose value changes at a real-valued time, allowing infinite divisibility of time. It can be precerived as taking a limit of a discrete process when <script type="math/tex; ">\Delta t\to 0</script>. It is preferable for two reasons:</p>
+<ol>
+<li>It is more realistic because it allows infinite possible state at each <script type="math/tex; ">\delta t</script></li>
+<li>It is easier to derive formula</li>
+</ol>
+<h3 id="22-probability-density-function">2.2 Probability Density Function</h3>
+<p><strong>Probability density function (PDF)</strong> of a random variable <script type="math/tex; ">X</script>, denoted by <script type="math/tex; ">f(x)</script>, determines the probabilities associated with <script type="math/tex; ">X</script>. The probability that <script type="math/tex; ">X</script> assumes a value between <script type="math/tex; ">a</script> and <script type="math/tex; ">b</script> where <script type="math/tex; ">a < b</script>, denoted by <script type="math/tex; ">prob(a \le X \le b)</script>, is equal to the area under <script type="math/tex; ">f</script> between <script type="math/tex; ">a</script> and <script type="math/tex; ">b</script>.</p>
+<h3 id="23-normal-distribution-and-central-limit-theorem">2.3. Normal Distribution and Central limit Theorem</h3>
+<p><strong>Normal distribution</strong> is determined soleby two parameters: the mean <script type="math/tex; ">\mu</script> and the variance <script type="math/tex; ">\sigma^2</script>, its PDF is given by:</p>
+<p><script type="math/tex; mode=display">
+f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}e^\frac{-(x - \mu)^2}{2\sigma^2} \\
+\text{where } \quad -\infty < x < +\infty, \qquad -\infty < \mu < +\infty, \qquad \sigma > 0
+</script></p>
+<p>If <script type="math/tex; ">X</script> is is a normal random variable with mean <script type="math/tex; ">\mu</script> and variance <script type="math/tex; ">\sigma^2</script>, then we denote it as <script type="math/tex; ">X \sim N(\mu, \sigma^2)</script></p>
+<p>The <strong>Cumulative Distribution Function (CDF)</strong> of a normal random variable <script type="math/tex; ">X</script>, denoted by <script type="math/tex; ">F(x)</script>, determines the probability of the value of <script type="math/tex; ">X</script> not greater than <script type="math/tex; ">x</script>:</p>
+<p><script type="math/tex; mode=display">
+F(x) = prob(X \le x) = \int^{x}_{-\infty}f(y)dy
+</script></p>
+<p>The derivative of a random variable&apos;s CDF is its PDF, i.e. <script type="math/tex; ">F'(x) = f(x)</script></p>
+<h4 id="properties-of-the-normal-cumulative-distribution-function">Properties of the Normal Cumulative Distribution Function</h4>
+<ol>
+<li><script type="math/tex; ">F(+\infty) = 1</script></li>
+<li><script type="math/tex; ">F(-\infty) = 0</script></li>
+<li><script type="math/tex; ">F(\mu) = \frac{1}{2}</script></li>
+<li>If <script type="math/tex; "> x_1 \le x_2</script>, then <script type="math/tex; ">F(x_1) \le F(x_2)</script></li>
+<li><script type="math/tex; ">prob(a < x \le b) = F(b) - F(a)</script></li>
+<li><script type="math/tex; ">prob(x = a) = F(a) - F(a-0) = 0</script></li>
+</ol>
+
                                 
                                 </section>
                             
@@ -346,7 +492,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Chapter 3: Review of Probability","level":"1.5","depth":1,"next":{"title":"Chapter 4: Stochastic Differential Equations and Ito's lemma","level":"1.6","depth":1,"path":"Chapter_4_SDE_Ito.md","ref":"Chapter_4_SDE_Ito.md","articles":[]},"previous":{"title":"Chapter 2: The Tree Approach II -- Binomial Tree","level":"1.4","depth":1,"path":"Chapter_2_binomial_tree.md","ref":"Chapter_2_binomial_tree.md","articles":[]},"dir":"neutral"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["mathjax","livereload"],"pluginsConfig":{"mathjax":{"forceSVG":false,"version":"2.6-latest"},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter_3_probability.md","mtime":"2019-01-20T07:28:47.101Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-25T15:57:15.587Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Chapter 3: Review of Probability","level":"1.5","depth":1,"next":{"title":"Chapter 4: Stochastic Differential Equations and Ito's lemma","level":"1.6","depth":1,"path":"Chapter_4_SDE_Ito.md","ref":"Chapter_4_SDE_Ito.md","articles":[]},"previous":{"title":"Chapter 2: The Tree Approach II -- Binomial Tree","level":"1.4","depth":1,"path":"Chapter_2_binomial_tree.md","ref":"Chapter_2_binomial_tree.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["mathjax","livereload"],"pluginsConfig":{"mathjax":{"forceSVG":false,"version":"2.6-latest"},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter_3_probability.md","mtime":"2019-01-27T19:37:41.815Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-27T16:36:29.558Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
