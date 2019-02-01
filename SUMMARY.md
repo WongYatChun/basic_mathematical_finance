@@ -5,6 +5,7 @@
 * [Chapter 1: The Tree Approach I -- Binomial Branch](Chapter_1_binomial_branch.md)
 * [Chapter 2: The Tree Approach II -- Binomial Tree](Chapter_2_binomial_tree.md)
 * [Chapter 3: Review of Probability](Chapter_3_probability.md)
+* [Chapter 3B: Review of Probability](Chapter_3B_BS_lognormal.md)
 * [Chapter 4: Stochastic Differential Equations and Ito's lemma](Chapter_4_SDE_Ito.md)
 * [Chapter 5: Martingale Approach](Chapter_5_martingale.md)
 * [Chapter 6: Pricing Foreign Exchange and Equities with Dividends](Chapter_6_dividends.md)

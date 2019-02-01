@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Chapter 6: Pricing Foreign Exchange and Equities with Dividends · GitBook</title>
+        <title>Chapter 3B: Review of Probability · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Chapter_7_BS_martingale.html" />
+    <link rel="next" href="Chapter_4_SDE_Ito.html" />
     
     
-    <link rel="prev" href="Chapter_5_martingale.html" />
+    <link rel="prev" href="Chapter_3_probability.html" />
     
 
     </head>
@@ -154,7 +154,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6" data-path="Chapter_3B_BS_lognormal.html">
+        <li class="chapter active" data-level="1.6" data-path="Chapter_3B_BS_lognormal.html">
             
                 <a href="Chapter_3B_BS_lognormal.html">
             
@@ -193,7 +193,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.9" data-path="Chapter_6_dividends.html">
+        <li class="chapter " data-level="1.9" data-path="Chapter_6_dividends.html">
             
                 <a href="Chapter_6_dividends.html">
             
@@ -301,7 +301,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Chapter 6: Pricing Foreign Exchange and Equities with Dividends</a>
+        <a href="." >Chapter 3B: Review of Probability</a>
     </h1>
 </div>
 
@@ -316,7 +316,60 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h1 id="chapter-3b-black-scholes-framework-and-lognormal-distribution">Chapter 3B: Black-Scholes Framework and Lognormal Distribution</h1>
+<h2 id="outline">Outline</h2>
+<p>This chapter will:</p>
+<ol>
+<li>Derive the probability of a European call is in the money in the risk-neutral world</li>
+</ol>
+<h2 id="1-derive-the-probability-of-a-european-call-is-in-the-money-in-the-risk-neutral-world">1. Derive the probability of a European call is in the money in the risk-neutral world</h2>
+<h3 id="11-lognormal-distribution-in-black-scholes-framework">1.1. Lognormal Distribution in Black-Scholes framework</h3>
+<p>In the Black-Scholes framework, in the risk-neutral world, the return of the stock price <script type="math/tex; ">\ln(\frac{S(T)}{S(0)})</script> is assumed to be normally distributed, with the expected <strong>arithmetic</strong> return (not geometric) of the risk-free rate, i.e. <script type="math/tex; ">\ln(\frac{S(T)}{S(0)}) \sim N((r-\frac{1}{2}\sigma^2)T, \sigma^2T</script>. </p>
+<p><script type="math/tex; mode=display">
+\ln(\frac{S(T)}{S(0)}) \sim N((r-\frac{1}{2}\sigma^2)T, \sigma^2T) \\
+</script>
+By simple transformation:
+<script type="math/tex; mode=display">
+\ln(S(T)) -\ln(S(0)) \sim N((r-\frac{1}{2}\sigma^2)T, \sigma^2T) \\
+\ln(S(T)) \sim N(\ln(S(0)) + (r-\frac{1}{2}\sigma^2)T, \sigma^2T) \quad (\because \ln(S(0))  \text{is a constant})\\
+</script></p>
+<p>Therefore, the stock price (or the underlying price) at maturity <script type="math/tex; ">S(T)</script> follows lognormal distribution.
+<script type="math/tex; mode=display">
+S(T) \sim LN(\ln(S(0)) + (r-\frac{1}{2}\sigma^2)T, \sigma^2T) 
+</script></p>
+<p>Under this setting, the expected return of the stock price at maturity <script type="math/tex; ">T</script> in the risk-neutral world is exactly the risk-free rate:</p>
+<p><script type="math/tex; mode=display">
+
+\mathbb{E}(S(T)) = e^{\ln(S(0))+(r-\frac{1}{2})T + \frac{1}{2}\sigma^2T} = S(0)e^{rT}
+</script></p>
+<hr>
+<h3 id="12-the-probability-of-the-stock-price-is-lower-than-the-strike-price-in-risk-neutral-world">1.2. The probability of the stock price is lower than the strike price in risk-neutral world</h3>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+prob(S(T) \le K)    
+&= prob(\ln(S(T)) \le ln(K)    \\
+&= prob\Big( \frac{\ln(S(T)) - \big( \ln(S(0)) + (r - \frac{1}{2}\sigma^2)T \big)}{\sigma \sqrt{T}} \le \frac{\ln(K) - \big( \ln(S(0)) + (r - \frac{1}{2}\sigma^2)T \big)}{\sigma \sqrt{T}} \Big) \\
+&= prob\Big( Z \le \frac{\ln(\frac{K}{S(0)}) - (r - \frac{1}{2}\sigma^2)T}{\sigma \sqrt{T}} \Big) \\
+&= prob\Big( Z \le -\frac{\ln(\frac{S(0)}{K}) + (r - \frac{1}{2}\sigma^2)T}{\sigma \sqrt{T}} \Big) \\
+&= \Phi\Big(-\frac{\ln(\frac{S(0)}{K}) + (r - \frac{1}{2}\sigma^2)T}{\sigma \sqrt{T}}\Big)\\
+
+\text{Let} \: d_2 &= \frac{\ln(\frac{S(0)}{K}) + (r - \frac{1}{2}\sigma^2)T}{\sigma \sqrt{T}} \\
+
+\end{aligned}
+</script></p>
+<p><script type="math/tex; mode=display">
+\text{Therefore: } \quad
+
+prob(S(T) \le K) = \Phi(-d_2) = 1 - \Phi(d_2)
+
+
+</script></p>
+<h3 id="13-the-probability-of-the-stock-price-is-higher-than-the-strike-price-in-risk-neutral-world">1.3. The probability of the stock price is higher than the strike price in risk-neutral world</h3>
+<p><script type="math/tex; mode=display">
+prob(S(T) > K) = 1- prob(S(T) \le K) = 1- (1 - \Phi(d_2)) = \Phi(d_2)
+</script></p>
+<p>Therefore, the probability that a European call is in-the-money in the risk-neutral world is <script type="math/tex; ">\Phi(d_2)</script></p>
+
                                 
                                 </section>
                             
@@ -343,12 +396,12 @@
 
             
                 
-                <a href="Chapter_5_martingale.html" class="navigation navigation-prev " aria-label="Previous page: Chapter 5: Martingale Approach">
+                <a href="Chapter_3_probability.html" class="navigation navigation-prev " aria-label="Previous page: Chapter 3: Review of Probability">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="Chapter_7_BS_martingale.html" class="navigation navigation-next " aria-label="Next page: Chapter 7: Derive the Black-Scholes Formula by the Martingale Approach">
+                <a href="Chapter_4_SDE_Ito.html" class="navigation navigation-next " aria-label="Next page: Chapter 4: Stochastic Differential Equations and Ito's lemma">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -359,7 +412,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Chapter 6: Pricing Foreign Exchange and Equities with Dividends","level":"1.9","depth":1,"next":{"title":"Chapter 7: Derive the Black-Scholes Formula by the Martingale Approach","level":"1.10","depth":1,"path":"Chapter_7_BS_martingale.md","ref":"Chapter_7_BS_martingale.md","articles":[]},"previous":{"title":"Chapter 5: Martingale Approach","level":"1.8","depth":1,"path":"Chapter_5_martingale.md","ref":"Chapter_5_martingale.md","articles":[]},"dir":"neutral"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["mathjax","livereload"],"pluginsConfig":{"mathjax":{"forceSVG":false,"version":"2.6-latest"},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter_6_dividends.md","mtime":"2019-01-20T07:28:47.102Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-28T11:33:44.565Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Chapter 3B: Review of Probability","level":"1.6","depth":1,"next":{"title":"Chapter 4: Stochastic Differential Equations and Ito's lemma","level":"1.7","depth":1,"path":"Chapter_4_SDE_Ito.md","ref":"Chapter_4_SDE_Ito.md","articles":[]},"previous":{"title":"Chapter 3: Review of Probability","level":"1.5","depth":1,"path":"Chapter_3_probability.md","ref":"Chapter_3_probability.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["mathjax","livereload"],"pluginsConfig":{"mathjax":{"forceSVG":false,"version":"2.6-latest"},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter_3B_BS_lognormal.md","mtime":"2019-01-28T15:26:48.253Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-28T11:33:44.565Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

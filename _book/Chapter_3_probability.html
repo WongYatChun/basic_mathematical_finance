@@ -57,7 +57,7 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Chapter_4_SDE_Ito.html" />
+    <link rel="next" href="Chapter_3B_BS_lognormal.html" />
     
     
     <link rel="prev" href="Chapter_2_binomial_tree.html" />
@@ -154,7 +154,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6" data-path="Chapter_4_SDE_Ito.html">
+        <li class="chapter " data-level="1.6" data-path="Chapter_3B_BS_lognormal.html">
+            
+                <a href="Chapter_3B_BS_lognormal.html">
+            
+                    
+                    Chapter 3B: Review of Probability
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="Chapter_4_SDE_Ito.html">
             
                 <a href="Chapter_4_SDE_Ito.html">
             
@@ -167,7 +180,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7" data-path="Chapter_5_martingale.html">
+        <li class="chapter " data-level="1.8" data-path="Chapter_5_martingale.html">
             
                 <a href="Chapter_5_martingale.html">
             
@@ -180,7 +193,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.8" data-path="Chapter_6_dividends.html">
+        <li class="chapter " data-level="1.9" data-path="Chapter_6_dividends.html">
             
                 <a href="Chapter_6_dividends.html">
             
@@ -193,7 +206,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.9" data-path="Chapter_7_BS_martingale.html">
+        <li class="chapter " data-level="1.10" data-path="Chapter_7_BS_martingale.html">
             
                 <a href="Chapter_7_BS_martingale.html">
             
@@ -206,7 +219,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.10" data-path="Chapter_8_BSPDE.html">
+        <li class="chapter " data-level="1.11" data-path="Chapter_8_BSPDE.html">
             
                 <a href="Chapter_8_BSPDE.html">
             
@@ -219,7 +232,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.11" data-path="Chapter_9_BS_BSPDE.html">
+        <li class="chapter " data-level="1.12" data-path="Chapter_9_BS_BSPDE.html">
             
                 <a href="Chapter_9_BS_BSPDE.html">
             
@@ -232,7 +245,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.12" data-path="Chapter_10_asymptotic_IV.html">
+        <li class="chapter " data-level="1.13" data-path="Chapter_10_asymptotic_IV.html">
             
                 <a href="Chapter_10_asymptotic_IV.html">
             
@@ -245,7 +258,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.13" data-path="Chapter_11_greeks.html">
+        <li class="chapter " data-level="1.14" data-path="Chapter_11_greeks.html">
             
                 <a href="Chapter_11_greeks.html">
             
@@ -336,6 +349,7 @@
 </ul>
 </li>
 </ol>
+<hr>
 <h4 id="conditional-expectation-of-a-time-variant-random-variable">Conditional Expectation of a time-variant random variable</h4>
 <p><strong>Conditional expectation</strong> of a time-variant random variable <script type="math/tex; ">X(t)</script>, given the information <script type="math/tex; ">X(s)</script>, <script type="math/tex; "> s < t</script>, is usually denoted by:</p>
 <p><script type="math/tex; mode=display">
@@ -346,6 +360,7 @@
 <p><script type="math/tex; mode=display">
 \mathbb{E}(X(s) | X(s)) = X(s)
 </script></p>
+<hr>
 <h3 id="12-variance">1.2. Variance</h3>
 <p>The variance of <script type="math/tex; ">X</script>, denoted by <script type="math/tex; ">Var(X)</script> is defined by:</p>
 <p><script type="math/tex; mode=display">
@@ -362,11 +377,14 @@ Var(X) = \mathbb{E}((X - \mathbb{E}(X))^2) = \mathbb{E}(X^2) - (\mathbb{E}(X))^2
 </ul>
 </li>
 </ol>
+<hr>
 <p><strong>Standard Deviation</strong> of a random variable <script type="math/tex; ">X</script>, denoted by <script type="math/tex; ">STD(X)</script>, is defined by</p>
 <p><script type="math/tex; mode=display">
 STD(X) = \sqrt{Var(X)}
 </script></p>
+<hr>
 <h3 id="13-covariance-and-correlation">1.3. Covariance and Correlation</h3>
+<h4 id="covariance">Covariance</h4>
 <p>The covariance of any two random variables <script type="math/tex; ">X</script> and <script type="math/tex; ">Y</script>, denoted by <script type="math/tex; ">Cov(X,Y)</script>, is defined by:</p>
 <p><script type="math/tex; mode=display">
 Cov(X,Y) = \mathbb{E}((X - \mathbb{E}(X)))(Y - \mathbb{E}(Y)) = \mathbb{E}(XY) - \mathbb{E}(X)\mathbb{E}(Y)
@@ -392,6 +410,7 @@ Cov(X,Y) = \mathbb{E}((X - \mathbb{E}(X)))(Y - \mathbb{E}(Y)) = \mathbb{E}(XY) -
 </ul>
 </li>
 </ol>
+<hr>
 <h4 id="correlation">Correlation</h4>
 <p>The correlation between random variables <script type="math/tex; ">X</script> and <script type="math/tex; ">Y</script>, denoted by \rho(X,Y), is defined by:</p>
 <p><script type="math/tex; mode=display">
@@ -408,6 +427,7 @@ Cov(X,Y) = \mathbb{E}((X - \mathbb{E}(X)))(Y - \mathbb{E}(Y)) = \mathbb{E}(XY) -
 \end{cases}
 
 </script></p>
+<hr>
 <h3 id="14-sample-mean-and-sample-variance">1.4. Sample Mean and Sample Variance</h3>
 <p>Let <script type="math/tex; ">x_1, x_2, \dots , x_n</script> be a sample of a random variable <script type="math/tex; ">X</script> with a population mean <script type="math/tex; ">\mu</script> and a population variance <script type="math/tex; ">\sigma^2</script></p>
 <p><strong>Sample Mean</strong> <script type="math/tex; ">\bar{x}</script>: an estimation of the population mean <script type="math/tex; ">\mu</script></p>
@@ -418,6 +438,7 @@ Cov(X,Y) = \mathbb{E}((X - \mathbb{E}(X)))(Y - \mathbb{E}(Y)) = \mathbb{E}(XY) -
 <p><script type="math/tex; mode=display">
 s^2 = \frac{1}{n-1} \sum^{n}_{i=1}{(x_i-\bar{x})^2}
 </script></p>
+<hr>
 <h2 id="2-normal-distribution-and-central-limit-theorem">2. Normal Distribution and Central Limit Theorem</h2>
 <h3 id="21-discrete-process-vs-continuous-process">2.1 Discrete Process vs. Continuous Process</h3>
 <p><strong>Discrete Process</strong>: A process whose value changes on distinct, separated time points. For example, the binomial tree model describes the price of securities as a discrete process. The price changes at discrete time points with a fixed step size <script type="math/tex; ">\Delta t</script>.</p>
@@ -426,28 +447,134 @@ s^2 = \frac{1}{n-1} \sum^{n}_{i=1}{(x_i-\bar{x})^2}
 <li>It is more realistic because it allows infinite possible state at each <script type="math/tex; ">\delta t</script></li>
 <li>It is easier to derive formula</li>
 </ol>
-<h3 id="22-probability-density-function">2.2 Probability Density Function</h3>
+<hr>
+<h3 id="22-probability-density-function-and-cumulative-distribution-function">2.2 Probability Density Function and Cumulative Distribution Function</h3>
+<h4 id="probability-density-function">Probability Density Function</h4>
 <p><strong>Probability density function (PDF)</strong> of a random variable <script type="math/tex; ">X</script>, denoted by <script type="math/tex; ">f(x)</script>, determines the probabilities associated with <script type="math/tex; ">X</script>. The probability that <script type="math/tex; ">X</script> assumes a value between <script type="math/tex; ">a</script> and <script type="math/tex; ">b</script> where <script type="math/tex; ">a < b</script>, denoted by <script type="math/tex; ">prob(a \le X \le b)</script>, is equal to the area under <script type="math/tex; ">f</script> between <script type="math/tex; ">a</script> and <script type="math/tex; ">b</script>.</p>
-<h3 id="23-normal-distribution-and-central-limit-theorem">2.3. Normal Distribution and Central limit Theorem</h3>
-<p><strong>Normal distribution</strong> is determined soleby two parameters: the mean <script type="math/tex; ">\mu</script> and the variance <script type="math/tex; ">\sigma^2</script>, its PDF is given by:</p>
-<p><script type="math/tex; mode=display">
-f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}e^\frac{-(x - \mu)^2}{2\sigma^2} \\
-\text{where } \quad -\infty < x < +\infty, \qquad -\infty < \mu < +\infty, \qquad \sigma > 0
-</script></p>
-<p>If <script type="math/tex; ">X</script> is is a normal random variable with mean <script type="math/tex; ">\mu</script> and variance <script type="math/tex; ">\sigma^2</script>, then we denote it as <script type="math/tex; ">X \sim N(\mu, \sigma^2)</script></p>
+<hr>
+<h4 id="cumulative-distribution-function">Cumulative Distribution Function</h4>
 <p>The <strong>Cumulative Distribution Function (CDF)</strong> of a normal random variable <script type="math/tex; ">X</script>, denoted by <script type="math/tex; ">F(x)</script>, determines the probability of the value of <script type="math/tex; ">X</script> not greater than <script type="math/tex; ">x</script>:</p>
 <p><script type="math/tex; mode=display">
 F(x) = prob(X \le x) = \int^{x}_{-\infty}f(y)dy
 </script></p>
 <p>The derivative of a random variable&apos;s CDF is its PDF, i.e. <script type="math/tex; ">F'(x) = f(x)</script></p>
-<h4 id="properties-of-the-normal-cumulative-distribution-function">Properties of the Normal Cumulative Distribution Function</h4>
+<h4 id="properties-of-the-cumulative-distribution-function">Properties of the Cumulative Distribution Function</h4>
 <ol>
 <li><script type="math/tex; ">F(+\infty) = 1</script></li>
 <li><script type="math/tex; ">F(-\infty) = 0</script></li>
-<li><script type="math/tex; ">F(\mu) = \frac{1}{2}</script></li>
 <li>If <script type="math/tex; "> x_1 \le x_2</script>, then <script type="math/tex; ">F(x_1) \le F(x_2)</script></li>
 <li><script type="math/tex; ">prob(a < x \le b) = F(b) - F(a)</script></li>
 <li><script type="math/tex; ">prob(x = a) = F(a) - F(a-0) = 0</script></li>
+</ol>
+<hr>
+<h3 id="23-normal-distribution-and-central-limit-theorem">2.3. Normal Distribution and Central limit Theorem</h3>
+<h4 id="normal-distribution">Normal Distribution</h4>
+<p><strong>Normal distribution</strong> is determined soleby two parameters: the mean <script type="math/tex; ">\mu</script> and the variance <script type="math/tex; ">\sigma^2</script>, its PDF is given by:</p>
+<p><script type="math/tex; mode=display">
+f(x) = \frac{1}{\sqrt{2\pi\sigma^2}}e^\frac{-(x - \mu)^2}{2\sigma^2} \\
+\text{where } \quad -\infty < x < +\infty, \qquad -\infty < \mu < +\infty, \qquad \sigma > 0
+</script></p>
+<p>And hence its CDF is given by:</p>
+<p><script type="math/tex; mode=display">
+F(a) = \int^a_{-\infty} \frac{1}{\sqrt{2\pi\sigma^2}}e^\frac{-(x - \mu)^2}{2\sigma^2}dx
+</script></p>
+<p>Since normal distribution is symmetric, we can derive the following in addition to the basic properties of CDF:
+<script type="math/tex; mode=display">
+\begin{aligned}
+F(\mu) &= \frac{1}{2} \\
+F(a) &= 1 - F(-a)    
+\end{aligned}
+
+</script></p>
+<p>If <script type="math/tex; ">X</script> is is a normal random variable with mean <script type="math/tex; ">\mu</script> and variance <script type="math/tex; ">\sigma^2</script>, then we denote it as <script type="math/tex; ">X \sim N(\mu, \sigma^2)</script></p>
+<hr>
+<h4 id="standard-normal-distribution">Standard Normal Distribution</h4>
+<p><strong>Standard Normal Distribution</strong> is a normal distribution with mean <script type="math/tex; ">0</script> and variance <script type="math/tex; ">1</script>. The CDF of the standard normal distribution <script type="math/tex; ">\Phi (a)</script> and the PDF of the standard normal distribution <script type="math/tex; ">\phi(x)</script> are therefore:</p>
+<p><script type="math/tex; mode=display">
+\phi(x) = \frac{1}{\sqrt{2\pi}}e^\frac{-x^2}{2} \\
+
+\Phi(a) = \int^a_{-\infty} \frac{1}{\sqrt{2\pi}}e^\frac{-x^2}{2}dx \\
+</script></p>
+<p>The first order derivative of the standard normal CDF <script type="math/tex; ">\Phi(x)</script> with respect to x (i.e. <script type="math/tex; ">\Phi'(x))</script>:</p>
+<p><script type="math/tex; mode=display">
+\Phi'(x) = \phi(x) = \frac{1}{\sqrt{2\pi}}e^\frac{-x^2}{2}
+</script></p>
+<p>The second order derivative of the standard normal CDF <script type="math/tex; ">\Phi(x)</script> with respect to x (i.e. <script type="math/tex; ">\Phi''(x)</script>):</p>
+<p><script type="math/tex; mode=display">
+\Phi''(x) = \phi'(x) = -\frac{x}{\sqrt{2\pi}}e^\frac{-x^2}{2}
+</script></p>
+<hr>
+<h4 id="two-important-properties-of-the-normal-distribution">Two Important Properties of the Normal Distribution</h4>
+<p><strong>1. If <script type="math/tex; ">X \sim N(\mu, \sigma^2)</script>, then the random variable <script type="math/tex; ">(aX + b) \sim N(a\mu + b, a^2\sigma^2)</script>, where <script type="math/tex; ">a</script> and <script type="math/tex; ">b</script> are constants</strong></p>
+<p>This property enables us to <em>transform any normal random variable <script type="math/tex; ">X</script> in to a standard normal random variable.</em></p>
+<p><script type="math/tex; mode=display">
+   \text{If }X \sim N(\mu, \sigma^2), \quad \text{then the random variable } Z = \frac{X - \mu}{\sigma} \sim N(0, 1)
+</script>
+We can also apply this property to find the cumulative probability of any random variable <script type="math/tex; ">X \sim N(\mu, \sigma^2)</script> using the <strong><em>CDF of Standard Normal Distribution</em></strong> by the following transformation:</p>
+<p><script type="math/tex; mode=display">
+
+prob(X < a) = prob(\frac{X-\mu}{\sigma} < \frac{a-\mu}{\sigma}) = prob(Z < \frac{a-\mu}{\sigma}) = \Phi(\frac{a-\mu}{\sigma})
+
+</script></p>
+<p><strong>2. The sum of the normal random variables is also a normal random variable</strong></p>
+<p><script type="math/tex; mode=display">
+   \text{If} \: X_1 \sim N(\mu_1, \sigma^2_1) \: \text{and} \: X_2 \sim N(\mu_2, \sigma^2_1), \quad \text{then} \: X_1 + X_2 \sim N(\mu_1 + \mu_2, \sigma_1^2 + \sigma_2^2 + 2\sigma_{1,2}) \\
+
+   \text{where} \: \sigma_{1,2} = Cov(X_1,X_2)
+</script></p>
+<p>However, the <strong>product</strong> of two normal random variable is <u><strong>NOT</strong> a normal random variable</u>.</p>
+<hr>
+<h4 id="central-limit-theorem">Central Limit Theorem</h4>
+<p><strong>The sum of a large number of independently and identically distribued (i.i.d) random variables follows normal distribution</strong>.</p>
+<p>In particular, suppose <script type="math/tex; ">X_1, X_2, \dots</script> is a sequence of i.i.d random variables with the same mean <script type="math/tex; ">\mu</script> and the same variance <script type="math/tex; ">\sigma^2</script>, the sum <script type="math/tex; ">Y = \sum^n_{i=1}X_i \sim N(n\mu, n\sigma^2)</script>, when <script type="math/tex; ">n \to +\infty</script>.</p>
+<p>The important message is that sometimes we cannot use the normal distribution to model a particular random variable, but we can believe the sum of a large number of the observations of this random variable is normally distributed, so long as they are i.i.d.</p>
+<h2 id="3-lognormal-distribution">3. Lognormal Distribution</h2>
+<p>A log-normally distributed random variable is that its natural logarithm is a normal random variable, denoted by <script type="math/tex; ">LN(\ast)</script>. That is:</p>
+<p><script type="math/tex; mode=display">
+   \text{If} \: X \sim N(\mu, \sigma^2), \quad \text{then} \: Y = e^{X} \sim LN(\mu, \sigma^2) \\
+</script></p>
+<p>The PDF of a lognormal random variable is that:
+<script type="math/tex; mode=display">
+f(y) = \frac{1}{\sqrt{2\pi\sigma^2}y}e^{\frac{-(\ln(y)-\mu)}{2\sigma^2}} \qquad \text{where} \:  0 \le y < +\infty
+</script></p>
+<hr>
+<h3 id="31-mean-and-variance">3.1. Mean and Variance</h3>
+<p>The mean <script type="math/tex; ">\mathbb{E}(Y)</script> and the variance <script type="math/tex; ">Var(Y)</script>of a lognormal random variable are:</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+\mathbb{E}(Y) &= \int^{+\infty}_{0} y\frac{1}{\sqrt{2\pi\sigma^2}y}e^{\frac{-(\ln(y)-\mu)^2}{2\sigma^2}} dy    \\
+
+&= \int^{+\infty}_{-\infty} e^x\frac{1}{\sqrt{2\pi\sigma^2}}e^{\frac{-(x-\mu)^2}{2\sigma^2}} dx \\
+&= \frac{1}{\sqrt{2\pi\sigma^2}} \int^{+\infty}_{-\infty} exp\Big(\frac{-x^2+2(\mu + \sigma^2) x -\mu^2}{2\sigma^2}\Big) dx \\
+&= \frac{1}{\sqrt{2\pi\sigma^2}} \int^{+\infty}_{-\infty} exp\Big(\frac{-x^2+2(\mu + \sigma^2) x -(\mu^2 + 2\mu \sigma^2 + \sigma^4) + 2\mu \sigma^2 + \sigma^4}{2\sigma^2}\Big) dx \\
+&= \frac{1}{\sqrt{2\pi\sigma^2}} \int^{+\infty}_{-\infty} e^{\mu + \frac{1}{2}\sigma^2}exp\Big(\frac{-(x-(\mu + \sigma^2))^2}{2\sigma^2}\Big) dx \\
+&= e^{\mu + \frac{1}{2}\sigma^2} \int^{+\infty}_{-\infty}\frac{1}{\sqrt{2\pi\sigma^2}}exp\Big(\frac{-(x-(\mu + \sigma^2))^2}{2\sigma^2}\Big) dx \\
+&= e^{\mu + \frac{1}{2}\sigma^2} \\
+\\
+\mathbb{E}(Y^2) &= \int^{+\infty}_{0} y^2\frac{1}{\sqrt{2\pi\sigma^2}y}e^{\frac{-(\ln(y)-\mu)^2}{2\sigma^2}} dy    \\
+
+&= \int^{+\infty}_{-\infty} e^{2x}\frac{1}{\sqrt{2\pi\sigma^2}}e^{\frac{-(x-\mu)^2}{2\sigma^2}} dx \\
+
+&= \frac{1}{\sqrt{2\pi\sigma^2}} \int^{+\infty}_{-\infty} exp\Big(\frac{-x^2+2(\mu + 2\sigma^2) x -\mu^2}{2\sigma^2}\Big) dx \\
+&= \frac{1}{\sqrt{2\pi\sigma^2}} \int^{+\infty}_{-\infty} exp\Big(\frac{-x^2+2(\mu + 2\sigma^2) x -(\mu^2 + 4\mu \sigma^2 + 4\sigma^4) + 4\mu \sigma^2 + 4\sigma^4}{2\sigma^2}\Big) dx \\
+&= \frac{1}{\sqrt{2\pi\sigma^2}} \int^{+\infty}_{-\infty} e^{2\mu + 2\sigma^2}exp\Big(\frac{-(x-(\mu + \sigma^2))^2}{2\sigma^2}\Big) dx \\
+&= e^{2\mu + 2\sigma^2} \int^{+\infty}_{-\infty}\frac{1}{\sqrt{2\pi\sigma^2}}exp\Big(\frac{-(x-(\mu + \sigma^2))^2}{2\sigma^2}\Big) dx \\
+&= e^{2\mu + 2\sigma^2} \\
+\\
+Var(Y) &= \mathbb{E}(Y^2) - (\mathbb{E}(Y))^2 \\
+&= e^{2\mu + 2\sigma^2} -  e^{2\mu + \sigma^2} \\
+&= e^{2\mu + \sigma^2}(e^{\sigma^2}-1)
+
+\end{aligned}
+</script></p>
+<hr>
+<h3 id="32-two-important-properties-of-lognormal-random-variables">3.2. Two important properties of lognormal random variables:</h3>
+<ol>
+<li><u><strong>The Product of lognormal random variables is still lognormal</strong></u></li>
+<li><u><strong>The Sum of lognormal random variables is NOT lognormal</strong></u><ul>
+<li>That is why the Asian options have no closed form solution</li>
+</ul>
+</li>
 </ol>
 
                                 
@@ -481,7 +608,7 @@ F(x) = prob(X \le x) = \int^{x}_{-\infty}f(y)dy
                 </a>
                 
                 
-                <a href="Chapter_4_SDE_Ito.html" class="navigation navigation-next " aria-label="Next page: Chapter 4: Stochastic Differential Equations and Ito's lemma">
+                <a href="Chapter_3B_BS_lognormal.html" class="navigation navigation-next " aria-label="Next page: Chapter 3B: Review of Probability">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -492,7 +619,7 @@ F(x) = prob(X \le x) = \int^{x}_{-\infty}f(y)dy
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Chapter 3: Review of Probability","level":"1.5","depth":1,"next":{"title":"Chapter 4: Stochastic Differential Equations and Ito's lemma","level":"1.6","depth":1,"path":"Chapter_4_SDE_Ito.md","ref":"Chapter_4_SDE_Ito.md","articles":[]},"previous":{"title":"Chapter 2: The Tree Approach II -- Binomial Tree","level":"1.4","depth":1,"path":"Chapter_2_binomial_tree.md","ref":"Chapter_2_binomial_tree.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["mathjax","livereload"],"pluginsConfig":{"mathjax":{"forceSVG":false,"version":"2.6-latest"},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter_3_probability.md","mtime":"2019-01-27T19:37:41.815Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-27T16:36:29.558Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Chapter 3: Review of Probability","level":"1.5","depth":1,"next":{"title":"Chapter 3B: Review of Probability","level":"1.6","depth":1,"path":"Chapter_3B_BS_lognormal.md","ref":"Chapter_3B_BS_lognormal.md","articles":[]},"previous":{"title":"Chapter 2: The Tree Approach II -- Binomial Tree","level":"1.4","depth":1,"path":"Chapter_2_binomial_tree.md","ref":"Chapter_2_binomial_tree.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["mathjax","livereload"],"pluginsConfig":{"mathjax":{"forceSVG":false,"version":"2.6-latest"},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter_3_probability.md","mtime":"2019-01-28T11:33:39.989Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-28T11:33:44.565Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

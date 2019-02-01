@@ -13,6 +13,7 @@ This book is based on the lecture notes of FINA3350 Mathematical Finance prepare
 * [Chapter 1: The Tree Approach I -- Binomial Branch](Chapter_1_binomial_branch.md)
 * [Chapter 2: The Tree Approach II -- Binomial Tree](Chapter_2_binomial_tree.md)
 * [Chapter 3: Review of Probability](Chapter_3_probability.md)
+* [Chapter 3B: Review of Probability](Chapter_3B_BS_lognormal.md)
 * [Chapter 4: Martingale Approach](Chapter_5_martingale.md)
 * [Chapter 5: Pricing Foreign Exchange and Equities with Dividends](Chapter_6_dividends.md)
 * [Chapter 6: Derive the Black-Scholes Formula by the Martingale Approach](Chapter_7_BS_martingale.md)
