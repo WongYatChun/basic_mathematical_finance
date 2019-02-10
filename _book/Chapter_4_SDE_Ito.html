@@ -316,7 +316,315 @@
     
                                 <section class="normal markdown-section">
                                 
-                                
+                                <h1 id="chapter-4-stochastic-differential-equations-and-itos-lemma">Chapter 4: Stochastic Differential Equations and Ito&apos;s Lemma</h1>
+<h2 id="outline">Outline</h2>
+<p>This chapter will:</p>
+<h2 id="1-brownian-motion">1. Brownian Motion</h2>
+<p>We model the evolution of the stock price as a stochastic process instead of a function. A <strong>process</strong> is a variable that changes with time <em>randomly</em>, whereas a <strong>function</strong> is a variable that changes with time with a <em>deterministic</em> behaviour. Therefore, we need to study the properties of stochastic processes. Firstly, we will focus on the <strong>Brown Motion</strong> which is the building block of stochastic processes.</p>
+<p>A <strong>Standard Brownian Motion</strong> <script type="math/tex; ">B(t)</script> is a continuous-time stochastic process under measure <script type="math/tex; ">P</script> if and only if:</p>
+<ol>
+<li><script type="math/tex; ">B(0) = 0</script></li>
+<li><script type="math/tex; ">B(t) - B(s) \sim N(0, t-s), \qquad 0 \le s \le t \le T</script></li>
+<li><script type="math/tex; ">B(k) - B(k-1)</script> and <script type="math/tex; ">B(k+1) - B(k)</script> are independent <script type="math/tex; ">\implies</script> non-overlapping Brownian motions are independent</li>
+<li>The sample path of <script type="math/tex; ">B(t)</script> are continuous
+<script type="math/tex; mode=display">
+B(t) = \sum^{n-1}_{i=0}{\sqrt{dt}\epsilon_i} \qquad \text{where } \epsilon_i \sim IID \; N(0,1)
+</script></li>
+</ol>
+<p>We can prove that:</p>
+<ul>
+<li><script type="math/tex; ">\mathbb{E}[B(t)] = 0</script></li>
+<li><script type="math/tex; ">Var(B(t)) = t</script></li>
+<li><script type="math/tex; ">Std(t) = \sqrt{t}</script></li>
+<li><script type="math/tex; ">Cov(B(s), B(t)) = Var(B(s)) = s</script></li>
+</ul>
+<p>More on <script type="math/tex; ">Cov(B(s), B(t)) = s</script>:</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+Cov(B(s), B(t)) &= Cov(B(s), B(s) + B(t) - B(s)) \\
+&= Cov(B(s), B(s)) + Cov(B(s), B(t) - B(s)) \\
+&= Var(B(s)) + 0  \quad (\because \text{non-overlapping Brownian motions are independent}) \\
+&= s
+\end{aligned}
+</script></p>
+<p>The increment of a standard Brownian motion can be written in a differential form:</p>
+<p><script type="math/tex; mode=display">
+dB(t) = B(t+dt) - B(t) = \sqrt{dt}\epsilon \quad \text{where } \epsilon \sim IID \; N(0,1)
+</script></p>
+<p>We can also prove that:</p>
+<ul>
+<li><script type="math/tex; ">\mathbb{E}(dB(t)) = 0</script></li>
+<li><script type="math/tex; ">Var(dB(t)) = dt</script></li>
+<li><script type="math/tex; ">Std(dB(t)) = \sqrt{dt}</script></li>
+<li><script type="math/tex; ">Cov(dB(s), dB(t)) = 0</script></li>
+</ul>
+<p>Special properties of Brownian motions:</p>
+<ol>
+<li>Brownian motion is continuous everywhere and differentiable nowhere<ul>
+<li>It cannot be differentiated using ordinary calculus</li>
+<li>We need Ito&apos;s calculus to find its derivatives</li>
+</ul>
+</li>
+<li>Brownian motion has Markov Property<ul>
+<li>The present value of the variable is the only relevant information for predicting the future. The past history of the variable and the way that the present has emerged from the past are irrelevant, i.e. Brownian motion has no memory.</li>
+</ul>
+</li>
+<li>A Brownian Motion under <script type="math/tex; ">P</script> measure is a martingale under <script type="math/tex; ">P</script> measure, i.e. no drift under <script type="math/tex; ">P</script> measure<ul>
+<li><script type="math/tex; ">\mathbb{E}^{P}[B(t) | B(s)] = \mathbb{E}^{P}[B(s) + B(t) - B(s)| B(s)] = B(s) + \mathbb{E}^{P}[B(t) - B(s)| B(s)] = B(s)</script></li>
+</ul>
+</li>
+</ol>
+<p>We can generate a new stochastic process by incorporating a standard Brownian motion. For example, the process:
+<script type="math/tex; mode=display">
+A(t) = \sigma B(t) \sim N(0, \sigma^2 t)
+</script>
+or in the differential form (Stochastic Differential Equation)
+<script type="math/tex; mode=display">
+dA(t) = \sigma dB(t) \sim N(0, \sigma^2 t)
+</script></p>
+<p>A is called Brownian Motion with variance <script type="math/tex; ">\sigma^2</script>.</p>
+<p>Another example, the process:
+<script type="math/tex; mode=display">
+P(t) = \alpha t + \sigma B(t) \sim N(\alpha t, \sigma^2 t)
+</script>
+or in the differential form (Stochastic Differential Equation)
+<script type="math/tex; mode=display">
+dP(t) = \alpha dt + \sigma dB(t) \sim N(\alpha t, \sigma^2 t)
+</script></p>
+<p>P is called Brownian Motion with drift <script type="math/tex; ">\alpha</script> and variance <script type="math/tex; ">\sigma^2</script>, or arithmetic Brownian motion.</p>
+<h2 id="2-itos-lemma">2. Ito&apos;s Lemma</h2>
+<p><strong>Ito&apos;s lemma</strong> is a formula used to explicitly calculate the <strong>stochastic differential equation (SDE)</strong> that governs the dynamics of an arbitrary function given the stochastic process of the function&apos;s arguments. <u><strong>The key idea is that we need to do perform Taylor&apos;s expansion to the second order</strong></u>. </p>
+<h3 id="multiplication-rules-for-stochastic-differentials">Multiplication rules for stochastic differentials</h3>
+<p>We take following multiplication rules for granted when <script type="math/tex; ">dt \to 0</script></p>
+<p><script type="math/tex; ">  
+\begin{aligned}
+&dB(x,t)dB(x,t) = dt \\
+&dB(x,t)dt = 0 \\
+&dt(dt)^k \to 0 \quad k \in \Re
+\end{aligned}
+
+</script></p>
+<h3 id="itos-lemma-with-one-space-variable">Ito&apos;s Lemma with one space variable</h3>
+<p>Let <script type="math/tex; ">x</script> follow the SDE <script type="math/tex; ">dx = \mu_1 dt + \sigma_1 dB(x, t)</script>, then the SDE of <script type="math/tex; ">f(x, t)</script> given the stochastic process of <script type="math/tex; ">x</script> is: 
+<script type="math/tex; mode=display">
+df(x,t) = \frac{\partial f}{\partial t} dt + \frac{\partial f}{\partial x} dx + \frac{1}{2}\frac{\partial^2 f}{\partial x^2} (dx)^2
+</script></p>
+<h3 id="itos-lemma-with-two-space-variables">Ito&apos;s Lemma with two space variables</h3>
+<p>Let <script type="math/tex; ">x</script> follow the SDE <script type="math/tex; ">dx = \mu_1 dt + \sigma_1 dB(x, t)</script>, <script type="math/tex; ">y</script> follow the SDE <script type="math/tex; ">dy = \mu_2 dt + \sigma_2 dB(y, t)</script>, with <script type="math/tex; ">dB(x, t)dB(y, t) = \rho dt</script>, then the SDE of <script type="math/tex; ">f(x, y, t)</script> given the stochastic process of <script type="math/tex; ">x</script> and <script type="math/tex; ">y</script> is: 
+<script type="math/tex; mode=display">
+df(x,y,t) = \frac{\partial f}{\partial t} dt + \frac{\partial f}{\partial x} dx + \frac{\partial f}{\partial y} dy + \frac{1}{2}\Big[\frac{\partial^2 f}{\partial x^2} (dx)^2 + \frac{\partial^2 f}{\partial y^2} (dy)^2 + 2\frac{\partial^2 f}{\partial xy} (dxdy)\Big]
+</script></p>
+<h2 id="3-modeling-of-the-stock-price">3. Modeling of the stock price</h2>
+<p>To formulate the process of the derivative price, we need first model the stock price because it is observable in the market. One thing need special consideration is that due to the limited liability of financial assets, the stock price cannot be negative. Therefore, we cannot assume the stock price follows normal distribution. </p>
+<p>However, we can <strong>model the return of the stock by assuming the returns are normally distribted</strong> as they can be either negative or positive. Under this assumption, since <script type="math/tex; "> S(T) = S(t) e ^{a(T-t)}, \quad a \in \Re</script>, the <strong>stock price is then lognormally distributed</strong> or follow a <strong>Geometric Brownian Motion</strong>. It turns out lognormal distribution works quite well in modelling the stock price, at least it assures that the stock price will never be negative.</p>
+<p>The required rate of return of the stock <script type="math/tex; ">S</script> can be represented as <script type="math/tex; ">\frac{S(t+\Delta t)}{S(t)}</script>. When <script type="math/tex; ">\Delta t \to 0</script>, it becomes <script type="math/tex; ">\frac{dS(t)}{S(t)}</script>. </p>
+<h3 id="31-model-the-stock-price-under-p-measure">3.1. Model the stock price under P measure</h3>
+<p>Under <script type="math/tex; ">P</script> measure, we can assume <script type="math/tex; ">\frac{dS(t)}{S(t)}</script> has two parts:</p>
+<p><script type="math/tex; mode=display">
+\frac{dS(t)}{S(t)} = \mu dt \; (\text{expected return})+ \sigma dB(t)\; (\text{unexpected return})
+</script></p>
+<ul>
+<li>The expceted return <script type="math/tex; ">\mu dt</script> could be determined by CAPM which compensates the time value of money, inflation, and risks.</li>
+<li>The unexpected return <script type="math/tex; ">\sigma dB(t)</script> is a random variable that determines the deviation of the actual return from the expected return with a mean <script type="math/tex; ">0</script> and a variance <script type="math/tex; ">\sigma^2 dt</script>.</li>
+</ul>
+<p>Put them together, the stock return is normally distributed under measure <script type="math/tex; ">P</script> with mean <script type="math/tex; ">\mu dt</script> and variance <script type="math/tex; ">\sigma^2 dt</script>.</p>
+<p><script type="math/tex; mode=display">
+\frac{dS(t)}{S(t)} = \mu dt + \sigma dB(t) \sim N(\mu dt , \sigma^2dt)
+</script></p>
+<p>or we can move the <script type="math/tex; ">S(t)</script> to the right-hand side so that the SDE describes the process of the stock price in a differential equation.</p>
+<p><script type="math/tex; mode=display">
+dS(t) = \mu S(t)dt + \sigma S(t)dB(t) \sim LN(\mu dt , \sigma^2dt)
+</script></p>
+<p>For simplicity, we can assume <script type="math/tex; ">\mu</script> and <script type="math/tex; ">\sigma</script> are constants. </p>
+<h3 id="32-model-the-stock-price-under-q-measure">3.2. Model the stock price under Q measure</h3>
+<p>Similarly, we can also model the stock price in the risk-neutral world. Since all securities earn risk-free rate <script type="math/tex; ">r</script>, let <script type="math/tex; ">B^{Q}(t)</script> be a standard Brownian motion under the risk-neutral measure <script type="math/tex; ">Q</script>, the stock return is normally distributed under measure <script type="math/tex; ">Q</script> with mean <script type="math/tex; ">r dt</script> and variance <script type="math/tex; ">\sigma^2 dt</script>.</p>
+<p><script type="math/tex; mode=display">
+\frac{dS(t)}{S(t)} = r dt + \sigma dB^{Q}(t) \sim N(r dt , \sigma^2dt)
+</script></p>
+<p>or we can move the <script type="math/tex; ">S(t)</script> to the right-hand side so that the SDE describes the process of the stock price in a differential equation.</p>
+<p><script type="math/tex; mode=display">
+dS(t) = r S(t)dt + \sigma S(t)dB^{Q}(t) \sim LN(r dt , \sigma^2dt)
+</script></p>
+<h3 id="33-derive-the-ito-process-of-the-log-price">3.3. Derive the Ito process of the log-price</h3>
+<p>Let <script type="math/tex; ">p(S(t), t) = \ln S(t)</script>, <script type="math/tex; ">p(S(t),t)</script> is a <em>process</em> of <script type="math/tex; ">t</script> and a <em>function</em> of <script type="math/tex; ">S</script>.
+By simple partial differentiation, we get:</p>
+<ul>
+<li><script type="math/tex; ">\frac{\partial p(S(t), t)}{\partial t} = 0</script></li>
+<li><script type="math/tex; ">\frac{\partial p(S(t), t)}{\partial S(t)} = \frac{1}{S(t)}</script></li>
+<li><script type="math/tex; ">\frac{\partial^2 p(S(t), t)}{\partial S(t)^2} = - \frac{1}{S(t)^2}</script></li>
+</ul>
+<h4 id="derive-the-ito-process-of-pstt-using-itos-lemma">Derive the Ito process of <script type="math/tex; ">p(S(t),t)</script> using Ito&apos;s Lemma:</h4>
+<h5 id="under-p-measure">Under P measure:</h5>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+dS(t) &= \mu S(t)dt + \sigma S(t)dB(t) \\ \\
+dp(S(t), t) &= \frac{\partial p(S(t), t)}{\partial t} dt + \frac{\partial p(S(t), t)}{\partial S(t)} dS(t) + \frac{1}{2}\frac{\partial^2 p(S(t), t)}{\partial S(t)^2} (dS(t))^2 \\
+&= 0 + \frac{1}{S(t)}(\mu S(t)dt + \sigma S(t) dB(t)) + \frac{1}{2}\Big(-\frac{1}{S(t)^2}\Big)(\mu S(t)dt + \sigma S(t) dB(t))^2 \\
+&= (\mu - \frac{1}{2}\sigma^2)dt + \sigma dB(t)
+\end{aligned}
+
+</script></p>
+<h5 id="under-q-measure">Under Q measure:</h5>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+dS(t) &= r S(t)dt + \sigma S(t)dB^{Q}(t) \\ \\
+dp(S(t), t) &= \frac{\partial p(S(t), t)}{\partial t} dt + \frac{\partial p(S(t), t)}{\partial S(t)} dS(t) + \frac{1}{2}\frac{\partial^2 p(S(t), t)}{\partial S(t)^2} (dS(t))^2 \\
+&= 0 + \frac{1}{S(t)}(r S(t)dt + \sigma S(t) dB^{Q}(t)) + \frac{1}{2}\Big(-\frac{1}{S(t)^2}\Big)(r S(t)dt + \sigma S(t) dB^{Q}(t))^2 \\
+&= (r - \frac{1}{2}\sigma^2)dt + \sigma dB^{Q}(t)
+\end{aligned}
+
+</script></p>
+<h3 id="33-derive-the-ito-process-of-the-stock-price">3.3. Derive the Ito process of the stock price</h3>
+<p>Since <script type="math/tex; ">p(t) = \ln S(t)</script>, <script type="math/tex; ">S(t) = e^{p(t)}</script>
+By simple partial differentiation, we get:</p>
+<ul>
+<li><script type="math/tex; ">\frac{\partial S(t)}{\partial t} = 0</script></li>
+<li><script type="math/tex; ">\frac{\partial S(t)}{\partial p(t)} = S(t)</script></li>
+<li><script type="math/tex; ">\frac{\partial^2 S(t)}{\partial p(t)^2} = S(t)</script></li>
+</ul>
+<h4 id="derive-the-ito-process-of-pstt-using-itos-lemma">Derive the Ito process of <script type="math/tex; ">p(S(t),t)</script> using Ito&apos;s Lemma:</h4>
+<h5 id="under-p-measure">Under P measure:</h5>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+dp(S(t), t) &= (\mu - \frac{1}{2}\sigma^2)dt + \sigma dB(t) \\
+
+dS(t) &= \frac{\partial S(t)}{\partial t}dt + \frac{\partial S(t)}{\partial p(t)}dp(t) + \frac{1}{2}\frac{\partial^2 S(t)}{\partial (p(t))^2}d(p(t))^2 \\
+
+&= 0 + S(t)((\mu - \frac{1}{2}\sigma^2)dt + \sigma dB(t)) + \frac{1}{2}S(t)((\mu - \frac{1}{2}\sigma^2)dt + \sigma dB(t))^2 \\
+
+&= \mu S(t) dt + \sigma S(t)dB(t))
+
+\end{aligned}
+
+</script></p>
+<h5 id="under-q-measure">Under Q measure:</h5>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+dp(S(t), t) &= (r - \frac{1}{2}\sigma^2)dt + \sigma dB^Q(t) \\
+
+dS(t) &= \frac{\partial S(t)}{\partial t}dt + \frac{\partial S(t)}{\partial p(t)}dp(t) + \frac{1}{2}\frac{\partial^2 S(t)}{\partial (p(t))^2}d(p(t))^2 \\
+
+&= 0 + S(t)((r - \frac{1}{2}\sigma^2)dt + \sigma dB^Q(t)) + \frac{1}{2}S(t)((r - \frac{1}{2}\sigma^2)dt + \sigma dB^Q(t))^2 \\
+
+&= r S(t)dt + \sigma S(t)dB^Q(t))
+
+
+\end{aligned}
+
+</script></p>
+<p>It shows that both <script type="math/tex; ">S(t)</script> and <script type="math/tex; ">p(t)</script> have the Markov property which is consistent with the weak form of the market efficiency. It means that the present stock price has reflected all the history information. One cannot make abnormal return by analysing the past history of the stock prices.</p>
+<h2 id="4-popular-stochastic-processes">4. Popular Stochastic Processes</h2>
+<h3 id="41-arithmetic-brownian-motion">4.1. Arithmetic Brownian Motion:</h3>
+<p><script type="math/tex; mode=display">
+dp(t) = \alpha dt + \sigma dB(t)
+</script></p>
+<h3 id="42-geometric-brownian-motion">4.2. Geometric Brownian Motion</h3>
+<p>It is used to model the stock price.
+<script type="math/tex; mode=display">
+dS(t) = \mu S(t) dt + \sigma S(t) dB(t)
+</script></p>
+<h3 id="43-ornstein-uhlenbeck-mean-reversion-process">4.3. Ornstein-Uhlenbeck (mean reversion) process</h3>
+<p><script type="math/tex; mode=display">
+dr(t) = a(\bar{r}-r)dt + \sigma dB(t)
+</script></p>
+<p>This process is used in <strong>Vasicek model</strong> to model short-term interest rate.
+The parameter <script type="math/tex; ">a>0</script> is called mean-reverting paramter. <script type="math/tex; ">\bar{r}</script> is the long-term of the short rate. The short rate is pulled to <script type="math/tex; ">\bar{r}</script> at rate <script type="math/tex; ">a</script>. Noted that in Vasicek Model, the short rate can become negative.</p>
+<h3 id="44-square-root-process">4.4. Square-root process</h3>
+<p><script type="math/tex; mode=display">
+dr(t) = a(\bar{r}-r)dt + \sigma \sqrt{r(t)} dB(t)
+</script></p>
+<p>This process is used in <strong>Cox-Ingersoll-Ross model (CIR model)</strong> to model short-term interest rate. It has the same mean-reverting dirft as that in the Vasicek model, but the diffution term (<script type="math/tex; ">\sigma \sqrt{r(t)}</script>) is proportional to <script type="math/tex; ">\sqrt{r(t)}</script>. This implies the volatility increases as the short rate increases.  In constrast to Vasicek model, the short rate in CIR model is always non-negative. </p>
+<p>In addition to short-term interest rate, square-root process can also model <em>dividend yields</em> and <em>stock return volatility</em>.</p>
+<h2 id="5-itos-calculus">5. Ito&apos;s Calculus</h2>
+<p>As we have already discussed, Brownian motion is not differentiable, and hence, we cannot use ordinary calculus to perform differentiation or integration on stochastic equations. We need Ito&apos;s Calculus instead. </p>
+<hr>
+<p><strong>Case 1: <script type="math/tex; "> \int^t_0 d\ln S(s) </script></strong></p>
+<p>For example, under <script type="math/tex; ">P</script> measure, we want to derive the functional form of the stock price <script type="math/tex; ">S(t)</script> from the differential form of the stock price:
+<script type="math/tex; mode=display">
+dS(t) = \mu S(t) dt + \sigma S(t) dB(t)
+</script></p>
+<p>or</p>
+<p><script type="math/tex; mode=display">
+\frac{dS(t)}{S(t)} = \mu dt + \sigma dB(t)
+</script></p>
+<p>The ordinary calculus tells us that 
+<script type="math/tex; mode=display">
+\frac{d\ln S(t)}{dS(t)} = \frac{1}{S(t)} \to d\ln S(t)= \frac{dS(t)}{S(t)}
+</script></p>
+<p>It might be tempting to conclude:
+<script type="math/tex; mode=display">
+d\ln S(t) = \mu dt + \sigma dB(t)
+</script></p>
+<p>However, it is <strong>wrong</strong>. We can check it by differentiating <script type="math/tex; ">d \ln S(t)</script> using Ito&apos;s Lemma:</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+d \ln S(t) &= \frac{\partial S(t)}{S(t)} dS(t) + \frac{1}{2} \frac{\partial^2 \ln S(t)}{S(t)^2} (dS(t))^2    \\
+&= \frac{d S(t)}{S(t)} + \frac{1}{2} (- \frac{1}{S(t)^2})(dS(t))^2 \\
+&= (\mu - \frac{1}{2}\sigma^2)dt + \sigma dB(t) \quad (\because dS(t) = \mu S(t) dt + \sigma S(t) dB(t))
+\end{aligned}
+
+</script></p>
+<p>Therefore, for <script type="math/tex; ">\sigma \ne 0</script>, i.e. if there is a random term in the differential equation, ordinary calculus does not work. </p>
+<p>With the proper differential equation for <script type="math/tex; ">d \ln S(t)</script> by Ito&apos;s Lemma, we can integrate this differential equation and find the function form of the stock price:</p>
+<p><script type="math/tex; mode=display">
+
+\begin{aligned}
+\int^t_{0} d \ln S(s) &= \int^t_{0} (\mu - \frac{1}{2}\sigma^2)ds + \sigma dB(s)    \\
+\left. \ln S(s) \right |^t_0 &= \left.(\mu - \frac{1}{2}\sigma^2)s \right |^t_0 + \sigma B(s) \Big|^t_0 \\
+\ln S(t) - \ln S(0)  &= (\mu - \frac{1}{2}\sigma^2)t +  \sigma (B(t) - B(0)) \\
+\ln S(t)   &= \ln S(0) + (\mu - \frac{1}{2}\sigma^2)t +  \sigma B(t) \sim N(\ln S(0) + (\mu - \frac{1}{2}\sigma^2)t,\; \sigma t)\\
+S(t) &= S(0) e^{(\mu - \frac{1}{2}\sigma^2)t +  \sigma B(t)} \sim LN(\ln S(0) + (\mu - \frac{1}{2}\sigma^2)t, \; \sigma t))
+\end{aligned}
+
+</script></p>
+<p>Similarly, under <script type="math/tex; ">Q</script> measure, given the differential form of the stock price 
+<script type="math/tex; mode=display">
+dS(t) = r S(t) dt + \sigma S(t) dB(t)
+</script></p>
+<p>We can derive the derive the differential form of the log-price process:</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+d \ln S(t) &= \frac{\partial S(t)}{S(t)} dS(t) + \frac{1}{2} \frac{\partial^2 \ln S(t)}{S(t)^2} (dS(t))^2    \\
+&= \frac{d S(t)}{S(t)} + \frac{1}{2} (- \frac{1}{S(t)^2})(dS(t))^2 \\
+&= (r - \frac{1}{2}\sigma^2)dt + \sigma dB(t) \quad (\because dS(t) = r S(t) dt + \sigma S(t) dB(t))
+\end{aligned}
+
+</script></p>
+<p>Integrate <script type="math/tex; ">d \ln S(t)</script>:
+<script type="math/tex; mode=display">
+\begin{aligned}
+\int^t_{0} d \ln S(s) &= \int^t_{0} (r - \frac{1}{2}\sigma^2)ds + \sigma dB(s)    \\
+\left. \ln S(s) \right |^t_0 &= \left.(r - \frac{1}{2}\sigma^2)s \right |^t_0 +  \sigma B(s) \Big| ^t_0 \\
+\ln S(t) - \ln S(0)  &= (r - \frac{1}{2}\sigma^2)t +  \sigma (B(t) - B(0)) \\
+\ln S(t)   &= \ln S(0) + (r - \frac{1}{2}\sigma^2)t +  \sigma B(t) \sim N(\ln S(0) + (r - \frac{1}{2}\sigma^2)t,\; \sigma t)\\
+S(t) &= S(0) e^{(r - \frac{1}{2}\sigma^2)t +  \sigma B(t)} \sim LN(\ln S(0) + (r - \frac{1}{2}\sigma^2)t, \; \sigma t))
+\end{aligned}
+
+</script></p>
+<hr>
+<p><strong>Case 2: <script type="math/tex; "> \int^t_0 B(s) dB(s) </script></strong></p>
+<p>It might be tempting to conclude:
+<script type="math/tex; mode=display">
+\int^t_0 B(s) dB(s) = \frac{1}{2} B(t)^2
+</script></p>
+<p>It is also <strong>wrong</strong>. Differentiating the RHS would not give the integral on LHS. In fact, we are not always be able to find the functional form of a SDE. It requires experience and possible luck to solve the SDE. With prior knowledge, we can solve <script type="math/tex; "> \int^t_0 B(s) dB(s) </script> by first differentiating <script type="math/tex; ">dB(t)^2</script> by Ito&apos;s Lemma.</p>
+<p><script type="math/tex; mode=display">
+\begin{aligned}
+dB(t)^2 &= \frac{\partial B(t)^2}{B(t)} dB(t) + \frac{\partial^2 B(t)^2}{\partial B(t)^2}(dB(t)^2)^2 \\
+&= 2B(t)dB(t) + dt
+\end{aligned}
+</script></p>
+<p>We can try to integrate <script type="math/tex; ">dB(t)^2</script> and see what it gives us:
+<script type="math/tex; mode=display">
+\begin{aligned}
+\int^t_0 dB(s)^2 &= \int^t_0 2B(S)dB(s) + \int^t_0 ds \\
+
+B(t)^2 & = 2 \int^t_0 B(S)dB(s) + t \\
+\implies \int^t_0 B(s)dB(s) &= \frac{1}{2}(B(t)^2 - t)
+\end{aligned}
+</script></p>
+<p>Therefore, we luckily find the solution for <script type="math/tex; ">\int^t_0 B(s)dB(s) = \frac{1}{2}(B(t)^2 - t)</script></p>
+
                                 
                                 </section>
                             
@@ -359,7 +667,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Chapter 4: Stochastic Differential Equations and Ito's lemma","level":"1.7","depth":1,"next":{"title":"Chapter 5: Martingale Approach","level":"1.8","depth":1,"path":"Chapter_5_martingale.md","ref":"Chapter_5_martingale.md","articles":[]},"previous":{"title":"Chapter 3B: Review of Probability","level":"1.6","depth":1,"path":"Chapter_3B_BS_lognormal.md","ref":"Chapter_3B_BS_lognormal.md","articles":[]},"dir":"neutral"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["mathjax","livereload"],"pluginsConfig":{"mathjax":{"forceSVG":false,"version":"2.6-latest"},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter_4_SDE_Ito.md","mtime":"2019-01-20T07:28:47.101Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-01-28T11:33:44.565Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Chapter 4: Stochastic Differential Equations and Ito's lemma","level":"1.7","depth":1,"next":{"title":"Chapter 5: Martingale Approach","level":"1.8","depth":1,"path":"Chapter_5_martingale.md","ref":"Chapter_5_martingale.md","articles":[]},"previous":{"title":"Chapter 3B: Review of Probability","level":"1.6","depth":1,"path":"Chapter_3B_BS_lognormal.md","ref":"Chapter_3B_BS_lognormal.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["mathjax","livereload"],"pluginsConfig":{"mathjax":{"forceSVG":false,"version":"2.6-latest"},"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"Chapter_4_SDE_Ito.md","mtime":"2019-02-04T11:39:56.580Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-02-04T10:27:32.848Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
